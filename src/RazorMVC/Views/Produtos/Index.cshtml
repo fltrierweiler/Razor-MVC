@@ -37,7 +37,7 @@
                 @(item.Descrição != null? @Html.DisplayFor(modelItem => item.Descrição) : "(Sem descrição)")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Preço)
+                R$@Html.DisplayFor(modelItem => item.Preço)
             </td>
             <td>
                 @(item.Fornecedor != null? @Html.DisplayFor(modelItem => item.Fornecedor.Nome) : "(Sem fornecedor)")
