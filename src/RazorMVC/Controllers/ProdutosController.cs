@@ -157,9 +157,11 @@ namespace RazorMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> AddSupplier()
+        public IActionResult AddSupplier(int? id)
         {
-            return RedirectToAction(nameof(Index));
+            if (id != null)
+                return RedirectToAction("Create", "Fornecedores", new { productId = id });
+            else return RedirectToAction("Create", "Fornecedores");
         }
 
         private bool ProdutoExists(int id)

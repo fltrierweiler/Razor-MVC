@@ -27,8 +27,9 @@ namespace RazorMVC.Controllers
 
 
         // GET: Fornecedores/Create
-        public IActionResult Create()
+        public IActionResult Create(int? productId)
         {
+            TempData["productId"] = productId;
             return View();
         }
 
@@ -43,7 +44,10 @@ namespace RazorMVC.Controllers
             {
                 _context.Add(fornecedor);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (TempData["productId"] != null)
+                    return RedirectToAction("Edit", "Produtos", new { id = TempData["productId"] });
+                else
+                    return RedirectToAction("Create", "Produtos");
             }
             return View(fornecedor);
         }

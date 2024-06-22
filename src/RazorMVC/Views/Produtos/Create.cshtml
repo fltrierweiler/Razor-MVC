@@ -27,12 +27,19 @@
                 <input asp-for="Preço" class="form-control" />
                 <span asp-validation-for="Preço" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Fornecedor" class="control-label"></label>
-                <select asp-for="FornecedorId" class="form-control" asp-items="ViewBag.Fornecedores">
-                    <option value ="0">Nenhum</option>
-                </select>
-                <span asp-validation-for="FornecedorId" class="text-danger"></span>
+            <div class="form-group" style="display:flex;">
+                <div style="flex-grow:1;">
+                    <label asp-for="Fornecedor" class="control-label"></label>
+                    <select asp-for="FornecedorId" class="form-control" asp-items="ViewBag.Fornecedores">
+                        <option value="0">Nenhum</option>
+                    </select>
+                    <span asp-validation-for="FornecedorId" class="text-danger"></span>
+                </div>
+                <div style="align-content:flex-end; margin-left:5px;">
+                    <a asp-action="AddSupplier">
+                        <input type="button" class="btn btn-primary" value="Criar Novo" />
+                    </a>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

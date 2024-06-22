@@ -9,6 +9,6 @@ namespace RazorMVC.Models
         [Required]
         public string Nome { get; set; }
         public int? Telefone { get; set; }
-        public ICollection<Produto> Produtos { get; set; }
+        public ICollection<Produto>? Produtos { get; set; }
     }
 }
