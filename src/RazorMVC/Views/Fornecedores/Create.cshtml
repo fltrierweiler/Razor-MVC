@@ -5,9 +5,9 @@
     TempData.Keep("productId");
 }
 
-<h1>Create</h1>
+<h1>Adição de Fornecedor</h1>
 
-<h4>Fornecedor</h4>
+<h4>Preencha as informações abaixo para criar um novo fornecedor.</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,14 +24,14 @@
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Adicionar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar para a lista</a>
 </div>
 
 @section Scripts {
