@@ -24,9 +24,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Fornecedor)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataDeCriação)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -37,16 +34,13 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descrição)
+                @(item.Descrição != null? @Html.DisplayFor(modelItem => item.Descrição) : "(Sem descrição)")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Preço)
             </td>
             <td>
-                @(item.Fornecedor != null? @Html.DisplayFor(modelItem => item.Fornecedor.Nome) : "Nenhum")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataDeCriação)
+                @(item.Fornecedor != null? @Html.DisplayFor(modelItem => item.Fornecedor.Nome) : "(Sem fornecedor)")
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

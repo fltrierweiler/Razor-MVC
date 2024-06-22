@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Delete";
+    string telefone = Model.Telefone == null ? "(Sem telefone cadastrado)" : Model.Telefone.ToString();
 }
 
 <h1>Exclusão</h1>
@@ -20,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Telefone)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefone)
+            @telefone
         </dd>
     </dl>
     
