@@ -13,6 +13,7 @@ namespace RazorMVC.Models
         [Range(0, double.PositiveInfinity, ErrorMessage = "Preço precisa ser maior do que 0.")]
         public decimal Preço { get; set; }
         public int? FornecedorId { get; set; }
+        [Display(Name = "Data de Criação")]
         public DateTime? DataDeCriação { get; set; }
 
         [ForeignKey("FornecedorId")]

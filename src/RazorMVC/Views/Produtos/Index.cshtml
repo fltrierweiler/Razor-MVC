@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Preço)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FornecedorId)
+                @Html.DisplayNameFor(model => model.Fornecedor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataDeCriação)
@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Preço)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FornecedorId)
+                @(item.Fornecedor != null? @Html.DisplayFor(modelItem => item.Fornecedor.Nome) : "Nenhum")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataDeCriação)

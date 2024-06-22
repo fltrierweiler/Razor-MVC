@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorMVC.Data;
@@ -22,7 +23,8 @@ namespace RazorMVC.Controllers
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Produtos.ToListAsync());
+            List<Produto> produtos = await _context.Produtos.Include(p => p.Fornecedor).ToListAsync();
+            return View(produtos);
         }
 
         // GET: Produtos/Details/5
@@ -44,8 +46,9 @@ namespace RazorMVC.Controllers
         }
 
         // GET: Produtos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await SetSuppliersViewBag();
             return View();
         }
 
@@ -58,10 +61,12 @@ namespace RazorMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                produto.FornecedorId = produto.FornecedorId == 0 ? null : produto.FornecedorId; // Caso o usuário escolha "Nenhum" como fornecedor.
                 _context.Add(produto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            await SetSuppliersViewBag();
             return View(produto);
         }
 
@@ -78,6 +83,7 @@ namespace RazorMVC.Controllers
             {
                 return NotFound();
             }
+            await SetSuppliersViewBag();
             return View(produto);
         }
 
@@ -97,6 +103,7 @@ namespace RazorMVC.Controllers
             {
                 try
                 {
+                    produto.FornecedorId = produto.FornecedorId == 0 ? null : produto.FornecedorId; // Caso o usuário escolha "Nenhum" como fornecedor.
                     _context.Update(produto);
                     await _context.SaveChangesAsync();
                 }
@@ -113,6 +120,7 @@ namespace RazorMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            await SetSuppliersViewBag();
             return View(produto);
         }
 
@@ -149,9 +157,20 @@ namespace RazorMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> AddSupplier()
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
         private bool ProdutoExists(int id)
         {
             return _context.Produtos.Any(e => e.Id == id);
+        }
+
+        private async Task SetSuppliersViewBag()
+        {
+            List<Fornecedor> fornecedores = await _context.Fornecedores.ToListAsync();
+            ViewBag.Fornecedores = new SelectList(fornecedores, "Id", "Nome");
         }
     }
 }

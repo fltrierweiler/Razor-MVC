@@ -25,23 +25,6 @@ namespace RazorMVC.Controllers
             return View(await _context.Fornecedores.ToListAsync());
         }
 
-        // GET: Fornecedores/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var fornecedor = await _context.Fornecedores
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (fornecedor == null)
-            {
-                return NotFound();
-            }
-
-            return View(fornecedor);
-        }
 
         // GET: Fornecedores/Create
         public IActionResult Create()
@@ -63,6 +46,10 @@ namespace RazorMVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(fornecedor);
+        }
+        public async Task<List<Fornecedor>> Read()
+        {
+            return await _context.Fornecedores.ToListAsync();
         }
 
         // GET: Fornecedores/Edit/5

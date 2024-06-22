@@ -16,6 +16,16 @@ namespace RazorMVC.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Fornecedor>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Nome)
+                      .IsRequired();
+
+                entity.ToTable(t => t.HasCheckConstraint("Telefone Inválido", "length(Telefone) = 9"));
+            });
+
             modelBuilder.Entity<Produto>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -26,30 +36,22 @@ namespace RazorMVC.Data
                 entity.Property(e => e.Nome)
                       .IsRequired();
 
-               /* entity.Property(e => e.Preço)
-                      .HasColumnType("decimal(18,2)")
-                      .IsRequired();*/
+                entity.Property(e => e.Preço)
+                       .IsRequired()
+                       .HasColumnType("INTEGER")
+                       .HasConversion(
+                            v => (int)(v * 100),
+                            v => v / 100.0m);
+
+                entity.ToTable(t => t.HasCheckConstraint("Preço precisa ser maior do que 0", "Preço > 0"));
 
                 entity.Property(e => e.DataDeCriação)
-                      .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                      .HasDefaultValueSql("datetime('now', 'localtime')");
 
                 entity.HasOne(d => d.Fornecedor)
                       .WithMany(p => p.Produtos)
                       .HasForeignKey(d => d.FornecedorId)
                       .OnDelete(DeleteBehavior.SetNull);
-            });
-
-            modelBuilder.Entity<Fornecedor>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.Nome)
-                      .IsRequired();
-
-                entity.Property(e => e.Telefone)
-                      .IsRequired(false);
-
-                entity.ToTable(t => t.HasCheckConstraint("Telefone Inválido", "length(Telefone) = 9"));
             });
         }
     }

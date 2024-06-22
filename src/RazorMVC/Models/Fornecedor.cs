@@ -10,6 +10,5 @@ namespace RazorMVC.Models
         public string Nome { get; set; }
         public int? Telefone { get; set; }
         public ICollection<Produto> Produtos { get; set; }
-
     }
 }
