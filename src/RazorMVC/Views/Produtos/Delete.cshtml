@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Delete";
-    string descrição = string.IsNullOrEmpty(Model.Descrição) ? "(Nenhuma descrição cadastrada)" : Model.Descrição;
 }
 
 <h1>Exclusão</h1>
@@ -16,24 +15,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descrição):
-        </dt>
-        <dd class = "col-sm-10">
-            @descrição
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Preço):
-        </dt>
-        <dd class = "col-sm-10">
-            R$@Html.DisplayFor(model => model.Preço)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FornecedorId):
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FornecedorId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DataDeCriação):

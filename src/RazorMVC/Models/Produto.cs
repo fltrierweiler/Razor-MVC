@@ -7,10 +7,11 @@ namespace RazorMVC.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage= "Favor adicionar um nome ao produto.")]
         public string Nome { get; set; }
         public string? Descrição { get; set; }
-        [Range(0, double.PositiveInfinity, ErrorMessage = "Preço precisa ser maior do que 0.")]
+        [Required(ErrorMessage = "Favor adicionar um preço ao produto.")]
+        [Range(0.01, double.PositiveInfinity, ErrorMessage = "O valor do produto precisa ser maior do que 0.")]
         public decimal Preço { get; set; }
         public int? FornecedorId { get; set; }
         [Display(Name = "Data de Criação")]

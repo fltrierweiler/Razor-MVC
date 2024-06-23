@@ -35,8 +35,7 @@ namespace RazorMVC.Controllers
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var produto = await _context.Produtos.Include(p=> p.Fornecedor).FirstOrDefaultAsync(m => m.Id == id);
             if (produto == null)
             {
                 return NotFound();
@@ -61,6 +60,7 @@ namespace RazorMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var price = produto.Preço;
                 produto.FornecedorId = produto.FornecedorId == 0 ? null : produto.FornecedorId; // Caso o usuário escolha "Nenhum" como fornecedor.
                 _context.Add(produto);
                 await _context.SaveChangesAsync();

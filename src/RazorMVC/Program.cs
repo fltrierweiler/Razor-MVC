@@ -12,6 +12,12 @@ builder.Services.AddDbContext<StorageContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddMvc(options =>
+{
+    options.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(x => $"O campo '{x}' precisa conter um número.");
+    options.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => "O campo precisa ser preenchido com um número.");
+});
+
 var app = builder.Build();
 
 // Adicionar elementos ao banco de dados se não houver elemento algum
@@ -40,6 +46,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
 app.Run();
