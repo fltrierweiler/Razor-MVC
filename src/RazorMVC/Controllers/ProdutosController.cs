@@ -58,6 +58,7 @@ namespace RazorMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Descrição,Preço,FornecedorId,DataDeCriação")] Produto produto)
         {
+            CheckNameUniqueness(produto);
             if (ModelState.IsValid)
             {
                 var price = produto.Preço;
@@ -98,6 +99,8 @@ namespace RazorMVC.Controllers
             {
                 return NotFound();
             }
+
+            CheckNameUniqueness(produto);
 
             if (ModelState.IsValid)
             {
@@ -168,11 +171,20 @@ namespace RazorMVC.Controllers
         {
             return _context.Produtos.Any(e => e.Id == id);
         }
-
+        // Tarefa responsável por listar os fornecedores existentes ao criar ou editar produtos.
         private async Task SetSuppliersViewBag()
         {
             List<Fornecedor> fornecedores = await _context.Fornecedores.ToListAsync();
             ViewBag.Fornecedores = new SelectList(fornecedores, "Id", "Nome");
+        }
+        // Ao editar ou criar produtos, é preciso validar se já existe um produto cadastrado com o mesmo nome no banco de dados (salvo pelo produto sendo editado, se for o caso).
+        private void CheckNameUniqueness(Produto produto)
+        {
+            if (_context.Produtos.Where(p => p.Id != produto.Id).Any(i => i.Nome == produto.Nome))
+            {
+                ModelState.AddModelError(nameof(produto.Nome),
+                                         "Já existe um produto cadastrado com o mesmo nome.");
+            }
         }
     }
 }
