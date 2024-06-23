@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddMvc(options =>
 {
-    options.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(x => $"O campo '{x}' precisa conter um número.");
+    options.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(x => $"O campo '{x}' precisa conter apenas números.");
     options.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => "O campo precisa ser preenchido com um número.");
 });
 
