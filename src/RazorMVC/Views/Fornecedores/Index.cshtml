@@ -6,8 +6,8 @@
 
 <h1>Índice de Fornecedores</h1>
 
-<div class="custom-container" style="padding:0px;">
-    <table class="table">
+<div class="col-md-6 custom-container" style="padding:0px;">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>
@@ -16,7 +16,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Telefone)
                 </th>
-                <th></th>
+                <th>
+                    Ações
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -29,14 +31,14 @@
                     <td>
                         @(item.Telefone != null ? Html.DisplayFor(modelItem => item.Telefone) : "(Sem telefone)")
                     </td>
-                    <td style="display:flex; gap: 7px;">
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm w-100">Editar</a>
-                        <a type="button" class="btn btn-outline-danger btn-sm open-modal-button w-100" data-url="@Url.Action("LoadPartialView", "Fornecedores", new { id = item.Id, view = "Delete" })">Excluir</a>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></a>
+                        <a type="button" class="btn btn-danger btn-sm open-modal-button" data-url="@Url.Action("LoadPartialView", "Fornecedores", new { id = item.Id, view = "Delete" })"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<a asp-action="Create" class="btn btn-primary">Adicionar Fornecedor</a>
+<a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-square-fill"></i> Criar Novo</a>
 

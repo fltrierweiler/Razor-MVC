@@ -7,7 +7,7 @@
 <h1>Índice de Produtos</h1>
 
 <div class="custom-container" style="padding:0px;">
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>
@@ -22,7 +22,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Fornecedor)
                 </th>
-                <th></th>
+                <th>
+                    Ações
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -41,16 +43,16 @@
                     <td>
                         @(item.Fornecedor != null ? @Html.DisplayFor(modelItem => item.Fornecedor.Nome) : "(Sem fornecedor)")
                     </td>
-                    <td style="text-align:center;">
-                        <a style="width:70px;" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a style="width:70px;" type="button" class="btn btn-outline-secondary btn-sm open-modal-button" data-url="@Url.Action("LoadPartialView", "Produtos", new { id = item.Id, view = "Details" })">Detalhes</a>
-                        <a style="width:70px;" type="button" class="btn btn-outline-danger btn-sm open-modal-button" data-url="@Url.Action("LoadPartialView", "Produtos", new { id = item.Id, view = "Delete" })">Excluir</a>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></a>
+                        <a type="button" class="btn btn-primary btn-sm open-modal-button" data-url="@Url.Action("LoadPartialView", "Produtos", new { id = item.Id, view = "Details" })"><i class="bi bi-eye-fill"></i></a>
+                        <a type="button" class="btn btn-danger btn-sm open-modal-button" data-url="@Url.Action("LoadPartialView", "Produtos", new { id = item.Id, view = "Delete" })"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<a asp-action="Create" class="btn btn-primary">Adicionar Produto</a>
+<a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-square-fill"></i> Criar Novo</a>
 
 

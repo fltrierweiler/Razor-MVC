@@ -5,19 +5,19 @@
     string telefone = Model.Telefone == null ? "(Sem telefone cadastrado)" : Model.Telefone.ToString();
 }
 
-<h5 class="partial-view-title">Exclusão</h5>
+<h5 class="partial-view-title">Excluir Fornecedor</h5>
 
-<div class="custom-subtitle">Tem certeza de que deseja excluir este fornecedor?</div>
+<div class="custom-title">Tem certeza de que deseja excluir este fornecedor?</div>
 <div>
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayNameFor(model => model.Nome):
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefone)
+            @Html.DisplayNameFor(model => model.Telefone):
         </dt>
         <dd class = "col-sm-10">
             @telefone
@@ -26,7 +26,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Excluir</button>
         <a asp-action="Index" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
     </form>
 </div>

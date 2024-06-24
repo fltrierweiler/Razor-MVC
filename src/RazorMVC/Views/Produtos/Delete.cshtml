@@ -4,9 +4,9 @@
     ViewData["Title"] = "Delete";
 }
 
-<h5 class="partial-view-title">Exclusão</h5>
+<h5 class="partial-view-title">Excluir Produto</h5>
 
-<div class="custom-subtitle">Tem certeza de que deseja excluir este produto?</div>
+<div class="custom-title">Tem certeza de que deseja excluir este produto?</div>
 <div>
     <dl class="row">
         <dt class = "col-sm-4">
@@ -25,7 +25,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Excluir" class="btn btn-danger"/>
+        <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Excluir</button>
         <a asp-action="Index" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
     </form>
 </div>

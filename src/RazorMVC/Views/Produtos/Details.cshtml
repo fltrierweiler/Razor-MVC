@@ -13,42 +13,51 @@
 
 <h5 class="partial-view-title">Detalhes</h5>
 
-<div class="custom-subtitle">Especificações do Produto:</div>
-<div>
-    <dl class="row">
-        <dt class = "col-sm-4">
+<table class="table table-bordered table-striped">
+    <div class="custom-subtitle">Especificações técnicas:</div>
+    <tr>
+        <th>
             @Html.DisplayNameFor(model => model.Nome):
-        </dt>
-        <dd class = "col-sm-8">
+        </th>
+        <td>
             @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-4">
+        </td>
+    </tr>
+    <tr>
+        <th>
             @Html.DisplayNameFor(model => model.Descrição):
-        </dt>
-        <dd class = "col-sm-8">
+        </th>
+        <td>
             @descrição
-        </dd>
-        <dt class = "col-sm-4">
+        </td>
+    </tr>
+    <tr>
+        <th>
             @Html.DisplayNameFor(model => model.Preço):
-        </dt>
-        <dd class = "col-sm-8">
+        </th>
+        <td>
             R$@Html.DisplayFor(model => model.Preço)
-        </dd>
-        <dt class = "col-sm-4">
+        </td>
+    </tr>
+    <tr>
+        <th>
             @Html.DisplayNameFor(model => model.Fornecedor):
-        </dt>
-        <dd class = "col-sm-8">
+        </th>
+        <td>
             @fornecedor
-        </dd>
-        <dt class = "col-sm-4">
+        </td>
+    </tr>
+    <tr>
+        <th>
             @Html.DisplayNameFor(model => model.DataDeCriação):
-        </dt>
-        <dd class = "col-sm-8">
+        </th>
+        <td>
             @Html.DisplayFor(model => model.DataDeCriação)
-        </dd>
-    </dl>
-</div>
+        </td>
+    </tr>
+
+</table>
 <form>
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Editar</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success"><i class="bi bi-pencil-square"></i> Editar</a>
     <a asp-action="Index" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</a>
 </form>
