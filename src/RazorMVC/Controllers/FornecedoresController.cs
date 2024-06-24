@@ -160,6 +160,12 @@ namespace RazorMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> LoadPartialView(int id, string view)
+        {
+            var produto = await _context.Fornecedores.FirstOrDefaultAsync(m => m.Id == id);
+            return PartialView(view, produto);
+        }
+
         private bool FornecedorExists(int id)
         {
             return _context.Fornecedores.Any(e => e.Id == id);

@@ -4,12 +4,13 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editar</h1>
+<h2>Editar</h2>
 
-<h4>Fornecedor</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+
+    <div class="col-md-6 custom-container">
+
+        <div class="custom-title">Preencha os dados que deseja editar.</div>
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
@@ -23,16 +24,16 @@
                 <input asp-for="Telefone" class="form-control" placeholder="(Opcional) Insira um número de telefone" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-top:15px;">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>
+        <div style="text-align:right;">
+            <a asp-action="Index">Voltar para a lista</a>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Voltar para a lista</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

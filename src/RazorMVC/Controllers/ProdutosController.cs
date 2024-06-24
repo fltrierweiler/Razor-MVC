@@ -173,7 +173,7 @@ namespace RazorMVC.Controllers
 
         public async Task<IActionResult> LoadPartialView(int id, string view)
         {
-        var produto = await _context.Produtos.FirstOrDefaultAsync(m => m.Id == id);
+        var produto = await _context.Produtos.Include(p => p.Fornecedor).FirstOrDefaultAsync(m => m.Id == id);
             return PartialView(view, produto);
         }
 

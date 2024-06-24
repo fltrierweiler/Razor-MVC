@@ -21,6 +21,32 @@ body {
   margin-bottom: 60px;
 }
 
+.custom-title {
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+    margin-bottom:10px;
+}
+
+.custom-subtitle{
+    margin-bottom:10px;
+    font-size:20px;
+    font-weight:600;
+    color:midnightblue;
+}
+
+.custom-container {
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+label{
+    font-weight:600;
+    color:darkslateblue
+}
+
 input[required] + label:after {
     content: '*';
     color: red;

@@ -6,9 +6,6 @@
 
 <h1>Índice de Produtos</h1>
 
-<p>
-    <a asp-action="Create">Criar Novo</a>
-</p>
 
 <table class="table">
     <thead>
@@ -44,12 +41,13 @@
                 @(item.Fornecedor != null? @Html.DisplayFor(modelItem => item.Fornecedor.Nome) : "(Sem fornecedor)")
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
-                <a type="button" class="btn btn-primary open-modal-button" data-url="@Url.Action("LoadPartialView", "Produtos", new { id = item.Id, view = "Delete" })">Excluir MODAL</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Editar</a>
+                <a type="button" class="btn btn-outline-success btn-sm open-modal-button" data-url="@Url.Action("LoadPartialView", "Produtos", new { id = item.Id, view = "Details" })">Detalhes</a>
+                <a type="button" class="btn btn-outline-danger btn-sm open-modal-button" data-url="@Url.Action("LoadPartialView", "Produtos", new { id = item.Id, view = "Delete" })">Excluir</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<a asp-action="Create" class="btn btn-primary">Adicionar</a>
