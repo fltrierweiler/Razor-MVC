@@ -15,8 +15,8 @@
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="DataDeCriação"/>
             <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" required placeholder="Insira o nome do produto" />
+                <label asp-for="Nome" class="control-label"></label>
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,11 +25,11 @@
                 <span asp-validation-for="Descrição" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Preço" class="control-label"></label>
                 <input asp-for="Preço" class="form-control" required placeholder="Insira o valor do produto" />
+                <label asp-for="Preço" class="control-label"></label>
                 <span asp-validation-for="Preço" class="text-danger"></span>
             </div>
-            <div class="form-group" style="display:flex;">
+            <div class="col" style="display:flex; margin-bottom:10px;">
                 <div style="flex-grow:1;">
                     <label asp-for="Fornecedor" class="control-label"></label>
                     <select asp-for="FornecedorId" class="form-select" asp-items="ViewBag.Fornecedores">
@@ -38,9 +38,7 @@
                     <span asp-validation-for="FornecedorId" class="text-danger"></span>
                 </div>
                 <div style="align-content:flex-end; margin-left:5px;">
-                    <a asp-action="AddSupplier" asp-route-id="@Model.Id">
-                        <input type="button" class="btn btn-outline-primary" value="Criar Novo" />
-                    </a>
+                    <a asp-action="AddSupplier" type="button" class="btn btn-outline-primary">Criar Novo</a>
                 </div>
             </div>
             <div class="form-group">

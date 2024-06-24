@@ -20,3 +20,31 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+input[required] + label:after {
+    content: '*';
+    color: red;
+    visibility: hidden;
+}
+
+input:placeholder-shown + label::after {
+    visibility: visible;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.3em;
+}
+
+    .form-group label {
+        order: 1;
+    }
+
+    .form-group input {
+        order: 2;
+    }
+
+    .form-group span{
+        order: 3;
+    }
