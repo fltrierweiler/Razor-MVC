@@ -5,13 +5,14 @@ using RazorMVC.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Adiciona contexto de banco de dados através de injeção de dependência.
 builder.Services.AddDbContext<StorageContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("StorageContext") ?? throw new InvalidOperationException("Connection string 'StorageContext' not found.")));
 
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Pequena tradução de validações do MessageProvider.
 builder.Services.AddMvc(options =>
 {
     options.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(x => $"O campo '{x}' precisa conter apenas números.");
@@ -20,12 +21,14 @@ builder.Services.AddMvc(options =>
 
 var app = builder.Build();
 
-// Adicionar elementos ao banco de dados se não houver elemento algum
+// Cria migração e adiciona elementos ao banco de dados se não houver elemento algum
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<StorageContext>(); 
+    context.Database.Migrate(); // Cria nova migração caso não exista
 
-    SeedDatabase.Initialize(services);
+    SeedDatabase.Initialize(services); // Adiciona elementos padrão ao banco
 }
 
 // Configure the HTTP request pipeline.
