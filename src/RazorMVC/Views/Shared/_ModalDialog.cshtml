@@ -1,0 +1,52 @@
+﻿
+<div class="modal fade" id="dynamicModal" tabindex="-1" role="dialog" aria-labelledby="dynamicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dynamicModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.open-modal-button').forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                var url = button.getAttribute('data-url');
+                var modalBody = document.querySelector('#dynamicModal .modal-body');
+                var modalTitle = document.querySelector('#dynamicModal .modal-title');
+                var modalFooter = document.querySelector('#dynamicModal .modal-footer');
+
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        modalBody.innerHTML = data;
+                        var partialViewTitle = modalBody.querySelector('.partial-view-title')
+                        if (partialViewTitle){
+                            modalTitle.textContent = partialViewTitle.textContent;
+                            partialViewTitle.remove();
+                        }
+
+                        var form = modalBody.querySelector('form');
+                        if (form) {
+                            modalFooter.innerHTML = '';
+                            modalFooter.appendChild(form);
+                        }
+
+                        var modal = new bootstrap.Modal(document.getElementById('dynamicModal'));
+                        modal.show();
+                    })
+                    .catch(error => {
+                        alert('Falha ao carregar conteúdo');
+                    });
+            });
+        });
+    });
+</script>

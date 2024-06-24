@@ -171,6 +171,12 @@ namespace RazorMVC.Controllers
             return RedirectToAction("Create", "Fornecedores", new { productId = id });
         }
 
+        public async Task<IActionResult> LoadPartialView(int id, string view)
+        {
+        var produto = await _context.Produtos.FirstOrDefaultAsync(m => m.Id == id);
+            return PartialView(view, produto);
+        }
+
         private bool ProdutoExists(int id)
         {
             return _context.Produtos.Any(e => e.Id == id);

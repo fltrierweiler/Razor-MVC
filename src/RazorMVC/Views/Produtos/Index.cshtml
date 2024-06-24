@@ -47,6 +47,7 @@
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                <a type="button" class="btn btn-primary open-modal-button" data-url="@Url.Action("LoadPartialView", "Produtos", new { id = item.Id, view = "Delete" })">Excluir MODAL</a>
             </td>
         </tr>
 }
