@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
+                <input asp-for="Nome" class="form-control" required placeholder="Insira o nome do produto"/>
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -24,13 +24,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Preço" class="control-label"></label>
-                <input asp-for="Preço" class="form-control" />
+                <input asp-for="Preço" class="form-control" required placeholder="Insira o valor do produto"/>
                 <span asp-validation-for="Preço" class="text-danger"></span>
             </div>
             <div class="form-group" style="display:flex;">
                 <div style="flex-grow:1;">
                     <label asp-for="Fornecedor" class="control-label"></label>
-                    <select asp-for="FornecedorId" class="form-control" asp-items="ViewBag.Fornecedores">
+                    <select asp-for="FornecedorId" class="form-select" asp-items="ViewBag.Fornecedores">
                         <option value="0">Nenhum</option>
                     </select>
                     <span asp-validation-for="FornecedorId" class="text-danger"></span>
