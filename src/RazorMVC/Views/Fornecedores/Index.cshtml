@@ -6,35 +6,37 @@
 
 <h1>Índice de Fornecedores</h1>
 
-<p>
-    <a asp-action="Create">Criar Novo</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @(item.Telefone != null? Html.DisplayFor(modelItem => item.Telefone) : "(Sem telefone)")
-            </td>
-            <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Editar</a>
-                <a type="button" class="btn btn-outline-danger btn-sm open-modal-button" data-url="@Url.Action("LoadPartialView", "Fornecedores", new { id = item.Id, view = "Delete" })">Excluir</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="custom-container" style="padding:0px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefone)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @(item.Telefone != null ? Html.DisplayFor(modelItem => item.Telefone) : "(Sem telefone)")
+                    </td>
+                    <td style="display:flex; gap: 7px;">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm w-100">Editar</a>
+                        <a type="button" class="btn btn-outline-danger btn-sm open-modal-button w-100" data-url="@Url.Action("LoadPartialView", "Fornecedores", new { id = item.Id, view = "Delete" })">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a asp-action="Create" class="btn btn-primary">Adicionar Fornecedor</a>
+
