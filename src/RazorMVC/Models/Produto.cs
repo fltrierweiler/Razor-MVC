@@ -11,7 +11,7 @@ namespace RazorMVC.Models
         public string Nome { get; set; }
         public string? Descrição { get; set; }
         [Required(ErrorMessage = "Favor adicionar um preço ao produto.")]
-        [Range(0.01, double.PositiveInfinity, ErrorMessage = "O valor do produto precisa ser maior do que 0.")]
+        [Range(0.01, long.MaxValue/100, ErrorMessage = "O valor precisa ser maior do que 0 e não pode extrapolar o limite máximo.")]
         public decimal Preço { get; set; }
         public int? FornecedorId { get; set; }
         [Display(Name = "Data de Criação")]

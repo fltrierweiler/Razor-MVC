@@ -3,7 +3,12 @@
 @{
     ViewData["Title"] = "Details";
     string descrição = string.IsNullOrEmpty(Model.Descrição) ? "(Nenhuma descrição cadastrada)" : Model.Descrição;
-    string fornecedor = Model.Fornecedor == null ? "(Nenhum fornecedor cadastrado)" : $"{Model.Fornecedor.Nome} (Telefone: {Model.Fornecedor.Telefone})";
+    string fornecedor = "(Nenhum fornecedor cadastrado)";
+    if (Model.Fornecedor != null)
+    {
+        fornecedor = Model.Fornecedor.Nome;
+        fornecedor += Model.Fornecedor.Telefone != null ? $" (Telefone: {Model.Fornecedor.Telefone})" : " (Sem telefone cadastrado)";
+    }
 }
 
 <h1>Detalhes</h1>

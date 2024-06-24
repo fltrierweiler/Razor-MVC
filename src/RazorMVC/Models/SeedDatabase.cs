@@ -26,6 +26,10 @@ namespace RazorMVC.Models
                     {
                         Nome = "Jorge",
                         Telefone = 988884444
+                    },
+                    new Fornecedor()
+                    {
+                        Nome = "João"
                     }
                 );
                 context.Produtos.AddRange(
@@ -46,9 +50,14 @@ namespace RazorMVC.Models
                     new Produto()
                     {
                         Nome = "Alface",
-                        Descrição = "Verdura",
                         Preço = 1.33M,
-                        FornecedorId = 2
+                        FornecedorId = 3
+                    },
+                    new Produto()
+                    {
+                        Nome = "Café",
+                        Descrição = "Torrado",
+                        Preço = 15.99M
                     }
                 );
                 context.SaveChanges();

@@ -23,6 +23,9 @@ namespace RazorMVC.Data
                 entity.Property(e => e.Nome)
                       .IsRequired();
 
+                entity.HasIndex(e => e.Nome)
+                      .IsUnique();
+
                 entity.ToTable(t => t.HasCheckConstraint("Telefone Inválido", "length(Telefone) = 9"));
             });
 
@@ -40,7 +43,7 @@ namespace RazorMVC.Data
                        .IsRequired()
                        .HasColumnType("INTEGER")
                        .HasConversion(
-                            v => (int)(v * 100),
+                            v => (long)(v * 100),
                             v => v / 100.0m);
 
                 entity.ToTable(t => t.HasCheckConstraint("Preço precisa ser maior do que 0", "Preço > 0"));

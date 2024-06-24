@@ -40,6 +40,7 @@ namespace RazorMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Telefone")] Fornecedor fornecedor)
         {
+            CheckNameUniqueness(fornecedor);
             if (ModelState.IsValid)
             {
                 _context.Add(fornecedor);
@@ -83,6 +84,8 @@ namespace RazorMVC.Controllers
             {
                 return NotFound();
             }
+
+            CheckNameUniqueness(fornecedor);
 
             if (ModelState.IsValid)
             {
@@ -143,6 +146,16 @@ namespace RazorMVC.Controllers
         private bool FornecedorExists(int id)
         {
             return _context.Fornecedores.Any(e => e.Id == id);
+        }
+
+        // Ao editar ou criar fornecedores, é preciso validar se já existe um fornecedor cadastrado com o mesmo nome no banco de dados (salvo pelo fornecedor sendo editado, se for o caso).
+        private void CheckNameUniqueness(Fornecedor fornecedor)
+        {
+            if (_context.Fornecedores.Where(p => p.Id != fornecedor.Id).Any(i => i.Nome == fornecedor.Nome))
+            {
+                ModelState.AddModelError(nameof(fornecedor.Nome),
+                                         "Já existe um fornecedor cadastrado com o mesmo nome.");
+            }
         }
     }
 }
