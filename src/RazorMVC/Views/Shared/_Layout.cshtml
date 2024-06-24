@@ -11,26 +11,34 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark main-nav border-bottom box-shadow mb-3">
+            <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RazorMVC</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <div class="collapse navbar-collapse w-100">
+                    <ul class="nav navbar-nav w-100">
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="@(ViewData["Title"]?.ToString() == "Início"? "bi bi-house-fill text-light" : "bi bi-house")"></i> Início
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Produtos" asp-action="Index">
+                                <i class="@(ViewData["Title"]?.ToString() == "Produtos"? "bi bi-box-seam-fill text-light" : "bi bi-box-seam")"></i> Produtos
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Fornecedores" asp-action="Index">Fornecedores</a>
+                            <a class="nav-link" asp-area="" asp-controller="Fornecedores" asp-action="Index">
+                                <i class="@(ViewData["Title"]?.ToString() == "Fornecedores"? "bi bi-people-fill text-light" : "bi bi-people")"></i> Fornecedores
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">
+                                <i class="@(ViewData["Title"]?.ToString() == "Sobre"? "bi bi-info-circle-fill text-light" : "bi bi-info-circle")"></i> Sobre
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -47,7 +55,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - RazorMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - RazorMVC - <a asp-area="" asp-controller="Home" asp-action="About">Sobre</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

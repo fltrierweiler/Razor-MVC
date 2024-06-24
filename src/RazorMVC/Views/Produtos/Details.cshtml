@@ -1,7 +1,7 @@
 ﻿@model RazorMVC.Models.Produto
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
     string descrição = string.IsNullOrEmpty(Model.Descrição) ? "(Nenhuma descrição cadastrada)" : Model.Descrição;
     string fornecedor = "(Nenhum fornecedor cadastrado)";
     if (Model.Fornecedor != null)

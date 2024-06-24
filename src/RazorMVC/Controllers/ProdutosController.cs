@@ -52,8 +52,6 @@ namespace RazorMVC.Controllers
         }
 
         // POST: Produto/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Descrição,Preço,FornecedorId,DataDeCriação")] Produto produto)
@@ -92,8 +90,6 @@ namespace RazorMVC.Controllers
         }
 
         // POST: Produtos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descrição,Preço,FornecedorId,DataDeCriação")] Produto produto)
