@@ -39,6 +39,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            @await Html.PartialAsync("_Toast")
         </main>
     </div>
 

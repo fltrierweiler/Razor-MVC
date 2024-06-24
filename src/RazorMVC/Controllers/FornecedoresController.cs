@@ -45,10 +45,24 @@ namespace RazorMVC.Controllers
             {
                 _context.Add(fornecedor);
                 await _context.SaveChangesAsync();
+
                 if (TempData["productId"] != null)
-                    return RedirectToAction("Edit", "Produtos", new { id = TempData["productId"] });
+                {
+                    TempData["ToastMessage"] = $"Fornecedor '{fornecedor.Nome}' criado com sucesso. Selecione-o na lista para vinculá-lo ao produto.";
+                    TempData["ToastType"] = "success";
+                    if(Convert.ToInt32(TempData["productId"]) == 0)
+                        return RedirectToAction("Create", "Produtos");
+                    else
+                        return RedirectToAction("Edit", "Produtos", new { id = TempData["productId"] });
+                }
                 else
-                    return RedirectToAction("Create", "Produtos");
+                {
+                    TempData["ToastMessage"] = $"Fornecedor '{fornecedor.Nome}' criado com sucesso.";
+                    TempData["ToastType"] = "success";
+                    return RedirectToAction(nameof(Index));
+                }
+
+
             }
             return View(fornecedor);
         }
@@ -93,6 +107,8 @@ namespace RazorMVC.Controllers
                 {
                     _context.Update(fornecedor);
                     await _context.SaveChangesAsync();
+                    TempData["ToastMessage"] = $"Fornecedor '{fornecedor.Nome}' editado com sucesso.";
+                    TempData["ToastType"] = "success";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -137,9 +153,10 @@ namespace RazorMVC.Controllers
             if (fornecedor != null)
             {
                 _context.Fornecedores.Remove(fornecedor);
+                TempData["ToastMessage"] = $"Fornecedor '{fornecedor.Nome}' removido com sucesso.";
+                TempData["ToastType"] = "success";
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

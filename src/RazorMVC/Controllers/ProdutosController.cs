@@ -65,9 +65,12 @@ namespace RazorMVC.Controllers
                 produto.FornecedorId = produto.FornecedorId == 0 ? null : produto.FornecedorId; // Caso o usuário escolha "Nenhum" como fornecedor.
                 _context.Add(produto);
                 await _context.SaveChangesAsync();
+                TempData["ToastMessage"] = $"'{produto.Nome}' criado com sucesso!";
+                TempData["ToastType"] = "success";
                 return RedirectToAction(nameof(Index));
             }
             await SetSuppliersViewBag();
+
             return View(produto);
         }
 
@@ -121,6 +124,8 @@ namespace RazorMVC.Controllers
                         throw;
                     }
                 }
+                TempData["ToastMessage"] = $"'{produto.Nome}' editado com sucesso!";
+                TempData["ToastType"] = "success";
                 return RedirectToAction(nameof(Index));
             }
             await SetSuppliersViewBag();
@@ -154,17 +159,16 @@ namespace RazorMVC.Controllers
             if (produto != null)
             {
                 _context.Produtos.Remove(produto);
+                await _context.SaveChangesAsync();
+                TempData["ToastMessage"] = $"'{produto.Nome}' removido com sucesso!";
+                TempData["ToastType"] = "success";
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult AddSupplier(int? id)
+        public IActionResult AddSupplier(int id)
         {
-            if (id != null)
-                return RedirectToAction("Create", "Fornecedores", new { productId = id });
-            else return RedirectToAction("Create", "Fornecedores");
+            return RedirectToAction("Create", "Fornecedores", new { productId = id });
         }
 
         private bool ProdutoExists(int id)

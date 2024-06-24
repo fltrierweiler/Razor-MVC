@@ -36,15 +36,15 @@
                     <span asp-validation-for="FornecedorId" class="text-danger"></span>
                 </div>
                 <div style="align-content:flex-end; margin-left:5px;">
-                    <a asp-action="AddSupplier" type="button" class="btn btn-outline-primary">Criar Novo</a>
+                    <a asp-action="AddSupplier" asp-route-id="0" type="button" class="btn btn-outline-primary">Criar Novo</a>
                 </div>
             </div>
             <div class="row">
-                <div class="col">
-                    <button type="submit" class="btn btn-primary w-100">Adicionar</button>
-                </div>
-                <div class="col">
+                <div class="col-4">
                     <a asp-action="Index" class="btn btn-secondary w-100">Retornar</a>
+                </div>
+                <div class="col-8">
+                    <button type="submit" class="btn btn-primary w-100">Adicionar</button>
                 </div>
             </div>
         </form>
