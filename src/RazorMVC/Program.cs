@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using RazorMVC.Data;
 using RazorMVC.Models;
@@ -11,6 +13,7 @@ builder.Services.AddDbContext<StorageContext>(options =>
 
 
 builder.Services.AddControllersWithViews();
+builder.WebHost.UseStaticWebAssets();
 
 // Pequena tradução de validações do MessageProvider.
 builder.Services.AddMvc(options =>
@@ -25,9 +28,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<StorageContext>(); 
-    context.Database.Migrate(); // Cria nova migração caso não exista
-
+    var context = services.GetRequiredService<StorageContext>();
+    if (!context.Database.GetService<IRelationalDatabaseCreator>().Exists())
+    {
+        context.Database.Migrate(); // Cria banco de dados caso não exista e aplica migrações pendentes
+    }
     SeedDatabase.Initialize(services); // Adiciona elementos padrão ao banco
 }
 

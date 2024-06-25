@@ -11,7 +11,7 @@ using RazorMVC.Data;
 namespace RazorMVC.Migrations
 {
     [DbContext(typeof(StorageContext))]
-    [Migration("20240624231929_InitialCreate")]
+    [Migration("20240625123001_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
